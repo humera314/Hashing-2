@@ -1,0 +1,34 @@
+class Solution:
+    #TC= O(n)
+    #SC= O(1) only 26 alpha
+
+    '''
+    approch :
+    create a set chechk if particular value of s is in set
+    if   present add count +2 and remove element 
+    else add the element in set; add remaining set as 1
+     since they are odd only one value can be used
+    even number can form palindrome
+    '''
+    def longestPalindrome(self, s: str) -> int:
+        if  s is None or len(s)==0 :
+            return -1
+
+        pset=set() #initializing set 
+        count=0
+
+        for i in s:
+            if i in pset: #checkif if it has i
+
+                count+=2
+                pset.remove(i)
+            
+            else:
+                pset.add(i)
+            
+        if pset:  #error in indenttation
+            count= count+1
+            
+        return count
+
+        
