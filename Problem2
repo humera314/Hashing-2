@@ -1,0 +1,33 @@
+class Solution:
+    #TC:O(n)
+    #SC:O(1)
+    def findMaxLength(self, nums: List[int]) -> int:
+        '''
+        initilize base case of rum 0 at index-1
+        if 1 is found add + 1 for 0 sub -1
+        and check if rsum is already prenent in hashmap then find max by sub rsum index to initial index
+        else append in hashmap
+        '''
+        if nums is None or len(nums)==0:
+            return -1
+        hashmap={0:-1} #rsum, index
+        maxsum=0
+        rsum=0
+        for num in range(len(nums)):
+            if nums[num]==1:
+                rsum+=1
+            else:
+                rsum-=1
+            if rsum  in hashmap:
+                maxsum=max(maxsum,num- hashmap[rsum]) #finding max of rsum value ay initial index
+            else:
+                hashmap[rsum]=num
+        
+
+        return maxsum
+
+        #error:it should be  hashmap[rsum]=num not hashmap[num]=rsum
+
+                
+
+        
