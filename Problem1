@@ -1,0 +1,25 @@
+class Solution:
+    #TC: O(n)
+    #SC:O(n)
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        '''
+        add the rsum as we go forward din loop 
+        and sub it with k; check if val is in hashmap
+        to add the count else add the rsum with incremented or 1 value
+        '''
+        if nums is None or len(nums)==0:
+            return -1
+        hashmap={0:1}
+        rsum=0
+        count=0
+        for num in nums:
+            rsum+=num
+            if rsum-k in hashmap:
+                count+=hashmap[rsum-k]
+            
+            hashmap[rsum]=hashmap.get(rsum,0)+1
+          
+        return count
+        
+
+        #erroe hashmap{0: 1} correct way not hashmap(0,1)
